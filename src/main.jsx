@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
+import { BrowserRouter } from "react-router-dom";
 
 // import { HooksApp } from './HooksApp';
 // import { CounterApp } from './01-useState/CounterApp';
@@ -20,19 +20,22 @@ import ReactDOM from 'react-dom/client';
 // import ExtendedForm from './08-formheredados/ExtendedForm'
 // import ExtendedForm from './08-formheredados/ExtendedForm'
 // import './08-useReducer/intro-Reducer'
-import {TodoApp}  from './08-useReducer/TodoApp'
+//import {TodoApp}  from './08-useReducer/TodoApp'
 
 import './index.css'
+import { MainApp } from './09-useContext/MainApp';
 
 
-let App = ()=> {
+let App = () => {
   return (
     <div className="App">
-      <TodoApp/> 
+      <BrowserRouter>
+        <MainApp />
+      </BrowserRouter>
     </div>
   );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <App/>
+  <App />
 )

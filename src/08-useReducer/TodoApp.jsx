@@ -13,7 +13,7 @@ export const TodoApp = () => {
         , handleRemoveTodo
         , handleToggleTodo
         , todosCount
-        , todosCountPending } = useTodos();
+        ,   } = useTodos();
 
     return (
         <>
