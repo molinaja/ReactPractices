@@ -1,71 +1,69 @@
-import { act, renderHook } from "@testing-library/react";
-import { useCounter } from '../../src/hooks/useCounter'
+import { act, renderHook } from '@testing-library/react';
+import { useCounter } from '../../src/hooks/useCounter';
 
-describe('Test useCounter', () => {
+
+describe('Pruebas en el useCounter', () => {
     
-    test('Debe de retornar los valores por defecto', () => { 
+    test('debe de retornar los valores por defecto', () => {
         
-        let {result} = renderHook(
-            () => useCounter()
-        );
-        //console.log(result);
-        let { counter, decrement, increment, reset} = result.current
+        const { result } = renderHook( () => useCounter() );
+        const { counter, decrement, increment, reset } = result.current;
 
-        expect(
-            counter
-        ).toBe(10);
+        expect( counter ).toBe(10);
+        expect( decrement ).toEqual( expect.any( Function ) );
+        expect( increment ).toEqual( expect.any( Function ) );
+        expect( reset ).toEqual( expect.any( Function ) );
 
-        expect ( 
-            decrement 
-        ).toEqual( 
-            expect.any(Function) 
-        );
+    });
 
-        expect ( 
-            increment 
-        ).toEqual( 
-            expect.any(Function) 
-        );
+    test('debe de generar el counter con el valor de 100', () => {
+        
+        const { result } = renderHook( () => useCounter(100) );
+        const { counter } = result.current;
+        expect( counter ).toBe(100);
+    });
 
-        expect ( 
-            reset 
-        ).toEqual( 
-            expect.any(Function) 
-        );
+    test('debe de incrementar el contador', () => {
+        
+        const { result } = renderHook( () => useCounter(100) );
+        const { counter, increment } = result.current;
 
-     })
+        act( () => {
+            increment();
+            increment(2);
+        });
 
-     test('Debe de generar el counter con el valor de 100 ', () => { 
+        expect( result.current.counter ).toBe(103);
 
-        let {result} = renderHook(
-            () => useCounter(100)
-        );
-        //console.log(result);
-        let { counter, decrement, increment, reset} = result.current
+    });
 
-        expect(
-            counter
-        ).toBe(100);
+    test('debe de decrementar el contador', () => {
+        
+        const { result } = renderHook( () => useCounter(100) );
+        const { counter, decrement } = result.current;
 
-      })
+        act( () => {
+            decrement();
+            decrement(2);
+        });
 
-      test('debe validar el incremento del contador', () => { 
+        expect( result.current.counter ).toBe(97);
 
-        let {result} = renderHook(
-            () => useCounter(100)
-        );
-        //console.log(result);
-        //let { counter, decrement, increment, reset} = result.current
+    });
 
-        act(
-            ()=>{
-                result.current.increment(); 
-            }
-        )
+    test('debe de realizar el reset', () => {
+        
+        const { result } = renderHook( () => useCounter(100) );
+        const { counter, decrement, reset } = result.current;
 
-        expect(result.current.counter).toBe(101)
+        act( () => {
+            decrement();
+            reset();
+        });
 
+        expect( result.current.counter ).toBe(100);
 
-       })
+    });
+
 
 });
