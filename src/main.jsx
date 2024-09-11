@@ -24,6 +24,9 @@ import { BrowserRouter } from "react-router-dom";
 
 import './index.css'
 import { MainApp } from './09-useContext/MainApp';
+import { Componente1 } from './08-dataTable/Componente1';
+import { Componente2 } from './08-dataTable/Componente2';
+
 
 
 let App = () => {
@@ -31,6 +34,8 @@ let App = () => {
     <div className="App">
       <BrowserRouter>
         <MainApp />
+        <Componente1/>
+        <Componente2/>
       </BrowserRouter>
     </div>
   );
