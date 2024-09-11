@@ -55,15 +55,6 @@ export const Componente2 = () => {
               
     ]
 
-    const handleEdit = row => {
-        console.log('Edit clicked', row);
-        // Lógica para editar
-      };
-    
-      const handleDelete = row => {
-        console.log('Delete clicked', row);
-        // Lógica para eliminar
-      };
 
     return (
         <>
